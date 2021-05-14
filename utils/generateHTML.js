@@ -14,7 +14,7 @@ function generateHTML (employees) {
             </div>
             <div class="m-3">
                 <p class="text-start border m-0 p-1">ID: ${employee.getId()}</p>
-                <p class="text-start border m-0 p-1">Email: ${employee.getEmail()}</p>
+                <p class="text-start border m-0 p-1">Email: <a href ="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p>
                 <p class="text-start border p-1">${roles(employee)}</p>
             </div>
         </div>`
@@ -26,7 +26,7 @@ function generateHTML (employees) {
         return `Office: ${employee.getOfficeNum()}`
         }
         if(employee.getRole() === 'Engineer') {
-            return `Github: ${employee.getGitub()}`
+            return `Github: <a href="https://github.com/${employee.getGitub()}" target="_blank">${employee.getGitub()}</a>`
         }
         if(employee.getRole() === 'Intern') {
             return `School: ${employee.getSchool()}`
