@@ -94,17 +94,17 @@ function promptEmployees () {
     inquirer
     .prompt([...employeeQuestions])
     .then((employeeResponses) => {
-        console.log(employeeResponses.employeeRole)
+
         if(employeeResponses.employeeRole === 'Engineer') {
             employee = new Engineer(employeeResponses.employeeName, employeeResponses.employeeID, employeeResponses.employeeEmail, employeeResponses.engineerGithub)
             employees.push(employee)
-            console.log('you added an engineer')
+            console.log('You added an engineer')
         } 
         
         if(employeeResponses.employeeRole === 'Intern') {
             employee = new Intern(employeeResponses.employeeName, employeeResponses.employeeID, employeeResponses.employeeEmail, employeeResponses.internSchool)
             employees.push(employee)
-            console.log('you added an intern')
+            console.log('You added an intern')
         }
         
         if (employeeResponses.newEmployee) {
@@ -122,7 +122,7 @@ function writeHTML () {
         generateHTML(employees), 
         'utf8',
         (err) => {
-        err ? console.error(err) : console.log("success");
+        err ? console.error(err) : console.log("You've successfully created ./dist/index.html");
         }
     )
 }
@@ -140,7 +140,6 @@ function init () {
         let employee; 
         employee = new Manager(managerResponses.managerName, managerResponses.managerID, managerResponses.managerEmail, managerResponses.officeNumber)
         employees.push(employee)
-        console.log(employees)
         if (managerResponses.newEmployee) {
             promptEmployees ()
         } else {
