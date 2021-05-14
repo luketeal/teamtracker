@@ -128,6 +128,10 @@ function writeHTML () {
 }
 
 // Create a function to initialize app
+    // prompt for manager
+    // push manager into employees array
+    // if more employees, prompt for more employees
+    // pass employees to generateHTML function and write the HTML file
 
 function init () {
     inquirer
@@ -144,11 +148,6 @@ function init () {
         }
     })
 }
-
-    // prompt for manager
-    // push manager into employees array
-    // if more employees, prompt for more
-    // pass responses to generateHTML function and write the HTML file
 
 // initialize the app
 init ()
