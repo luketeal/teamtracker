@@ -4,6 +4,7 @@ const fs = require('fs');
 const Manager = require ('./lib/Manager.js')
 const Engineer = require ('./lib/Engineer.js')
 const Intern = require ('./lib/Intern.js');
+const { generateHTML } = require('./utils/generateHTML.js')
 
 // Create an array of questions for user input
 // team manager’s name, employee ID, email address, and office number
@@ -109,9 +110,21 @@ function promptEmployees () {
         if (employeeResponses.newEmployee) {
             promptEmployees ()
         } else {
-            console.log(employees[1].name + 'is a' + employees[1].getRole() + ' and their id is ' + employees[1].getId())
+            writeHTML ()
         }
     })
+}
+
+// Create a function to call the generatHTML function
+
+function writeHTML () {
+    fs.writeFile(`./dist/index.html`,
+        generateHTML(employees), 
+        'utf8',
+        (err) => {
+        err ? console.error(err) : console.log("success");
+        }
+    )
 }
 
 // Create a function to initialize app
@@ -127,7 +140,7 @@ function init () {
         if (managerResponses.newEmployee) {
             promptEmployees ()
         } else {
-            console.log(employees[0].name)
+            writeHTML ()
         }
     })
 }
