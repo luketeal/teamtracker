@@ -1,6 +1,9 @@
 // Include file system and inquirer packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const Manager = require ('./lib/Manager.js')
+const Engineer = require ('./lib/Engineer.js')
+const Intern = require ('./lib/Intern.js');
 
 // Create an array of questions for user input
 // team manager’s name, employee ID, email address, and office number
@@ -49,13 +52,14 @@ const employeeQuestions = [
         message: 'What is their email address?',
     },
     {
-        type: 'checkbox',
-        name: 'emplyeeRole',
+        type: 'list',
+        name: 'employeeRole',
         message: 'What is their Role?',
         choices: [
             'Engineer',
             'Intern',
-        ]
+        ],
+        default: 'Engineer'
     },
     {
         type: 'input',
@@ -83,8 +87,55 @@ const employeeQuestions = [
 // create an array of employees
 let employees = []
 
+// create a function to prompt for additional employees
+
+function promptEmployees () {
+    inquirer
+    .prompt([...employeeQuestions])
+    .then((employeeResponses) => {
+        console.log(employeeResponses.employeeRole)
+        if(employeeResponses.employeeRole === 'Engineer') {
+            employee = new Engineer(employeeResponses.employeeName, employeeResponses.employeeID, employeeResponses.employeeEmail, employeeResponses.engineerGithub)
+            employees.push(employee)
+            console.log('you added an engineer')
+        } 
+        
+        if(employeeResponses.employeeRole === 'Intern') {
+            employee = new Intern(employeeResponses.employeeName, employeeResponses.employeeID, employeeResponses.employeeEmail, employeeResponses.internSchool)
+            employees.push(employee)
+            console.log('you added an intern')
+        }
+        
+        if (employeeResponses.newEmployee) {
+            promptEmployees ()
+        } else {
+            console.log(employees[1].name + 'is a' + employees[1].getRole() + ' and their id is ' + employees[1].getId())
+        }
+    })
+}
+
 // Create a function to initialize app
-    // prompt for responses
+
+function init () {
+    inquirer
+    .prompt([...managerQuestions])
+    .then((managerResponses) => {
+        let employee; 
+        employee = new Manager(managerResponses.managerName, managerResponses.managerID, managerResponses.managerEmail, managerResponses.officeNumber)
+        employees.push(employee)
+        console.log(employees)
+        if (managerResponses.newEmployee) {
+            promptEmployees ()
+        } else {
+            console.log(employees[0].name)
+        }
+    })
+}
+
+    // prompt for manager
+    // push manager into employees array
+    // if more employees, prompt for more
     // pass responses to generateHTML function and write the HTML file
 
 // initialize the app
+init ()
