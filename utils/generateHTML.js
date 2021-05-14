@@ -7,17 +7,18 @@ function generateHTML (employees) {
     let htmlArray = []
 
     for(employee of employees) {
-        htmlArray.push(`<div class="col-10 col-lg-3 m-3 text-center p-0 shadow rounded-3 bg-light">
-            <div class="container-fluid bg-primary pb-1 rounded-top">
-                <h2 class="text-start text-light">${employee.getName()}</h2>
-                <h3 class="text-start text-light">${employee.getRole()}</h3>
-            </div>
-            <div class="m-3">
-                <p class="text-start border m-0 p-1">ID: ${employee.getId()}</p>
-                <p class="text-start border m-0 p-1">Email: <a href ="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p>
-                <p class="text-start border p-1">${roles(employee)}</p>
-            </div>
-        </div>`
+        htmlArray.push(`
+                <div class="col-10 col-lg-3 m-3 text-center p-0 shadow rounded-3 bg-light">
+                    <div class="container-fluid bg-primary pb-1 rounded-top">
+                        <h2 class="text-start text-light">${employee.getName()}</h2>
+                        <h3 class="text-start text-light">${employee.getRole()}</h3>
+                    </div>
+                    <div class="m-3">
+                        <p class="text-start border m-0 p-1">ID: ${employee.getId()}</p>
+                        <p class="text-start border m-0 p-1">Email: <a href ="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p>
+                        <p class="text-start border p-1">${roles(employee)}</p>
+                    </div>
+                </div>`
         )
     }
     
@@ -52,8 +53,7 @@ function generateHTML (employees) {
             <h1 class="text-center text-light">Team Tracker</h1>
         </div>
         <div class="container">
-            <div class="row justify-content-center">
-                ${cards}  
+            <div class="row justify-content-center">${cards}  
             </div>
         </div>
     
