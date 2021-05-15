@@ -98,13 +98,11 @@ function promptEmployees () {
         if(employeeResponses.employeeRole === 'Engineer') {
             employee = new Engineer(employeeResponses.employeeName, employeeResponses.employeeID, employeeResponses.employeeEmail, employeeResponses.engineerGithub)
             employees.push(employee)
-            console.log('You added an engineer')
         } 
         
         if(employeeResponses.employeeRole === 'Intern') {
             employee = new Intern(employeeResponses.employeeName, employeeResponses.employeeID, employeeResponses.employeeEmail, employeeResponses.internSchool)
             employees.push(employee)
-            console.log('You added an intern')
         }
         
         if (employeeResponses.newEmployee) {
